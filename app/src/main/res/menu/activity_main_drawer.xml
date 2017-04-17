@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_fcfs"
+            android:icon="@drawable/ic_trending_flat_black_24dp"
+            android:title="FCFS" />
+        <item
+            android:id="@+id/nav_sjf"
+            android:icon="@drawable/ic_trending_flat_black_24dp"
+            android:title="SJF" />
+        <item
+            android:id="@+id/nav_srtf"
+            android:icon="@drawable/ic_trending_flat_black_24dp"
+            android:title="SRTF" />
+        <item
+            android:id="@+id/nav_rr"
+            android:icon="@drawable/ic_trending_flat_black_24dp"
+            android:title="Round Robin" />
+    </group>
+
+    <item android:title="Settings">
+        <menu>
+            <item
+                android:id="@+id/nav_edit"
+                android:icon="@drawable/ic_mode_edit_black_24dp"
+                android:title="Edit" />
+            <item
+                android:id="@+id/nav_speed"
+                android:icon="@drawable/ic_timelapse_black_24dp"
+                android:title="Speed" />
+        </menu>
+    </item>
+
+</menu>
