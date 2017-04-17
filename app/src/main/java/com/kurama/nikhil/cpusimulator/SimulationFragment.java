@@ -51,7 +51,7 @@ public class SimulationFragment extends Fragment {
     float avgWT, avgTAT;
     EditText burstTimeEt, arrivalTimeEt;
     int runningID = -1;
-    int speed = 1000;
+    int speed = 100;
 
     LinearLayout runningLayout;
 
