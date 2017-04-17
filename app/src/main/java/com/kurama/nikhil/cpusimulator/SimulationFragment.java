@@ -29,7 +29,8 @@ public class SimulationFragment extends Fragment {
 
     int schedulingAlgorithm = 1;
 
-    /* KEY:
+    /*
+     KEY:
         FCFS = 1
         SJF = 2
         SRTF = 3
