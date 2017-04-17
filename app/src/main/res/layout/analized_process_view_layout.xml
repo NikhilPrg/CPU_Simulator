@@ -1,0 +1,27 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/analize_view_name"
+        android:text="Process"
+        android:textSize="25sp"
+        android:layout_marginLeft="25dp"
+        android:layout_alignParentLeft="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/analize_view_waitTime"
+        android:text="Wait TIme"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_centerInParent="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/analize_view_turnArroundTime"
+        android:text="TAT Time"
+        android:textSize="25sp"
+        android:gravity="right"
+        android:layout_marginRight="25dp"
+        android:layout_alignParentRight="true"/>
+</merge>
