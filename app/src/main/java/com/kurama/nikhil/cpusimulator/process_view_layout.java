@@ -50,6 +50,7 @@ public class process_view_layout extends RelativeLayout{
         setProcessNameAndTime();
     }
 
+
     public process_view_layout(Context context, String p, int bt, int at, int ps) {
         super(context);
         initializeViews(context);
@@ -188,4 +189,5 @@ public class process_view_layout extends RelativeLayout{
     public void setProcess_name(String process_name) {
         this.process_name = process_name;
     }
+
 }

@@ -39,9 +39,12 @@ public class MainActivity extends AppCompatActivity
         ll.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(ll.getId(), new SimulationFragment(), "test")
+                .add(ll.getId(), new SimulationFragment(), "FCFS")
                 .disallowAddToBackStack()
                 .commit();
+
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
+        drawer.openDrawer(GravityCompat.START);
     }
 
     @Override
@@ -77,6 +80,8 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         LinearLayout ll = (LinearLayout) findViewById(R.id.main_fragment_container);
         ll.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         SimulationFragment temp = new SimulationFragment();
@@ -114,12 +119,16 @@ public class MainActivity extends AppCompatActivity
                     .disallowAddToBackStack()
                     .commit();
         } else if (id == R.id.nav_edit) {
-
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(ll.getId(), new EditFragment(), "Edit")
+                    .disallowAddToBackStack()
+                    .commit();
         } else if (id == R.id.nav_speed) {
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

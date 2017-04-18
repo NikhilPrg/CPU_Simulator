@@ -157,7 +157,7 @@ public class SimulationFragment extends Fragment {
         return ll;
     }
 
-    private void createTempProcesses(){
+    private void createTempProcesses() {
         processList.add(new process_view_layout(super.getContext(), "P0", 10 , 4));
         processList.add(new process_view_layout(super.getContext(), "P1", 5 , 2));
         processList.add(new process_view_layout(super.getContext(), "P2", 6 , 3));
@@ -359,27 +359,37 @@ public class SimulationFragment extends Fragment {
             Log.v("queueExp", "Empty");
         }
     }
-
+    int prev = -1;
     LinkedList<Integer> poppedProcessesIDs = new LinkedList<Integer>();
     public void roundRobin() {
         for (int i = 0; i < processList.size(); i++) {
-            if(processList.get(i).getArrivalTime() == 0 && !poppedProcessesIDs.contains(i)) {
+            if(processList.get(i).getArrivalTime() == 0 && processList.get(i).getBurstTime() > 0) {
                 fcfsQueue.add(i);
             }
         }
 
         try {
-            runningID = fcfsQueue.pop();
-            poppedProcessesIDs.add(runningID);
-            if(processList.get(runningID).getBurstTime() >= 0){
-                fcfsQueue.push(runningID);
-                poppedProcessesIDs.remove(poppedProcessesIDs.contains(runningID));
-            }
+            printFcfsQueue();
+            runningID = fcfsQueue.peek();
+            fcfsQueue.pop();
+                if(processList.get(runningID).getBurstTime() > 1){
+                    fcfsQueue.add(runningID);
+                }
+            printFcfsQueue();
         }catch (Exception e){
             Log.v("queueExp", "Empty");
         }
 
 
+    }
+
+    private void printFcfsQueue() {
+        String print = "";
+        for (int i = 0; i < fcfsQueue.size(); i++) {
+            print += fcfsQueue.get(i) + ", ";
+        }
+
+        Log.v("Round Robin Queue", print);
     }
 
     public boolean isProcessPending() {
@@ -407,6 +417,7 @@ public class SimulationFragment extends Fragment {
         Intent i = new  Intent(super.getContext(), fcfs_analize.class);
         i.putExtra("AT", AT);
         i.putExtra("BT", BT);
+        i.putExtra("SA", schedulingAlgorithm);
         startActivity(i);
     }
 
