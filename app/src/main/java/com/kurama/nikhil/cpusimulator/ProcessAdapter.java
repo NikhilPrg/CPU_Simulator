@@ -21,9 +21,9 @@ public class ProcessAdapter extends ArrayAdapter<Process> {
     }
 
     private static class ViewHolder {
-        private TextView nameTv;
-        private TextView bTimeTv;
-        private TextView aTimeTv;
+        private EditText nameTv;
+        private EditText bTimeTv;
+        private EditText aTimeTv;
     }
 
     ViewHolder viewHolder;
@@ -35,9 +35,9 @@ public class ProcessAdapter extends ArrayAdapter<Process> {
         if(contentView == null) {
             contentView = LayoutInflater.from(getContext()).inflate(R.layout.edit_process_item, parent , false);
             viewHolder = new ViewHolder();
-            viewHolder.nameTv = (TextView) contentView.findViewById(R.id.edit_process_item_name);
-            viewHolder.bTimeTv = (TextView) contentView.findViewById(R.id.edit_process_item_bTime);
-            viewHolder.aTimeTv = (TextView) contentView.findViewById(R.id.edit_process_item_aTime);
+            viewHolder.nameTv =  (EditText) contentView.findViewById(R.id.edit_process_item_name);
+            viewHolder.bTimeTv = (EditText) contentView.findViewById(R.id.edit_process_item_bTime);
+            viewHolder.aTimeTv = (EditText) contentView.findViewById(R.id.edit_process_item_aTime);
 
             contentView.setTag(viewHolder);
         }else  {
@@ -49,6 +49,7 @@ public class ProcessAdapter extends ArrayAdapter<Process> {
            viewHolder.bTimeTv.setText(Integer.toString(process.getBurstTime()));
            viewHolder.aTimeTv.setText(Integer.toString(process.getArrivalTime()));
        }
+
 
         return contentView;
     }

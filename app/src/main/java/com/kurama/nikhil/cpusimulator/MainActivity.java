@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         final ProcessRecordDataSupply dataSupply = new ProcessRecordDataSupply(this);
-        if(dataSupply.getListOfIds() == null) {
+        if(dataSupply.getListOfIds() == null || dataSupply.getListOfIds().length == 0) {
             ArrayList<Process> preset = new ArrayList<Process>();
             preset.add(new Process("P0", 1, 2));
             preset.add(new Process("P1", 2, 3));

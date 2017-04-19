@@ -46,8 +46,9 @@ public class ProcessRecordDataSupply {
         }
         StringTokenizer tkn = new StringTokenizer(data, ";");
         StringTokenizer tkn2;
-        Process temp = new Process("P0", 0 ,0 );
+        Process temp;
         while(tkn.hasMoreTokens()){
+            temp = new Process("P0", 0 ,0 );
             tkn2 = new StringTokenizer(tkn.nextToken() , ",");
             temp.setProcessName(tkn2.nextToken());
             temp.setBurstTime(Integer.parseInt(tkn2.nextToken().trim()));
