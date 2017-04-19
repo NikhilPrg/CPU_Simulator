@@ -2,6 +2,7 @@ package com.kurama.nikhil.cpusimulator;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -27,16 +27,18 @@ public class PresetsEditFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    ListView lw;
+    String[] ids;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View fl = inflater.inflate(R.layout.fragment_preset_edit, container, false);
         final ProcessRecordDataSupply dataSupply = new ProcessRecordDataSupply(getContext());
 
-        String[] ids = dataSupply.getListOfIds();
+        ids = dataSupply.getListOfIds();
         Arrays.sort(ids);
 
         ArrayAdapter<String> aa = new ArrayAdapter<String>(getContext(), R.layout.list_view_textbar, ids);
-        ListView lw = (ListView) fl.findViewById(R.id.edit_list);
+        lw = (ListView) fl.findViewById(R.id.edit_list);
         lw.setAdapter(aa);
         lw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -49,7 +51,25 @@ public class PresetsEditFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        FloatingActionButton fab = (FloatingActionButton) fl.findViewById(R.id.edit_list_add);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), EditPreset.class);
+                startActivity(intent);
+            }
+        });
         return fl;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ProcessRecordDataSupply dataSupply = new ProcessRecordDataSupply(getContext());
+        ids = dataSupply.getListOfIds();
+        Arrays.sort(ids);
+        ArrayAdapter<String> aa = new ArrayAdapter<String>(getContext(), R.layout.list_view_textbar, ids);
+        lw.setAdapter(aa);
+    }
 }

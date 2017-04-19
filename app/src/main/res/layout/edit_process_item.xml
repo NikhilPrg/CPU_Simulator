@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:text="10"
         android:textSize="25dp"
+        android:inputType="number"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
 
@@ -24,6 +25,7 @@
         android:id="@+id/edit_process_item_aTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:text="20"
         android:textSize="25dp"
         android:layout_centerVertical="true"

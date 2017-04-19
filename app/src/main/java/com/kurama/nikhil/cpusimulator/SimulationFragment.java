@@ -38,7 +38,7 @@ public class SimulationFragment extends Fragment {
         RR = 4
         PQ = 5
      */
-
+    int preId ;
     TextView timerTextView;
     long startTime = 0;
     long millis = -1;
@@ -106,6 +106,7 @@ public class SimulationFragment extends Fragment {
 
     private RelativeLayout ll;
     private FragmentActivity fa;
+    ProcessRecordDataSupply dataSupply;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -154,10 +155,23 @@ public class SimulationFragment extends Fragment {
                 analizeCaller(v);
             }
         });
-        createTempProcesses();
+
+        SharedPreferences settings = getActivity().getSharedPreferences("settings", Context.MODE_PRIVATE);
+        preId = settings.getInt("selectedPreset", 1);
+//        createTempProcesses();
+        dataSupply = new ProcessRecordDataSupply(getContext());
+        ArrayList<Process> pAL = dataSupply.getPreset(preId);
+
+        for (int i = 0; i < pAL.size(); i++) {
+            processList.add(new process_view_layout(super.getContext(), pAL.get(i)));
+            originalProcessList.add(new process_view_layout(super.getContext(), pAL.get(i)));
+        }
+
         createProcessViews();
         return ll;
     }
+
+
 
     private void createTempProcesses() {
         processList.add(new process_view_layout(super.getContext(), "P0", 10 , 4));
@@ -404,7 +418,11 @@ public class SimulationFragment extends Fragment {
             }
         }
         Log.w("pending", "No");
-        processList.get(runningID).subBurstTime();
+        try {
+            processList.get(runningID).subBurstTime();
+        }catch (Exception e){
+
+        }
         return flag;
     }
 

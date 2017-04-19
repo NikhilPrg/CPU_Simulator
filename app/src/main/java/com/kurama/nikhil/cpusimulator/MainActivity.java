@@ -1,6 +1,7 @@
 package com.kurama.nikhil.cpusimulator;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -15,7 +16,6 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -49,24 +49,33 @@ public class MainActivity extends AppCompatActivity
         final ProcessRecordDataSupply dataSupply = new ProcessRecordDataSupply(this);
         if(dataSupply.getListOfIds() == null || dataSupply.getListOfIds().length == 0) {
             ArrayList<Process> preset = new ArrayList<Process>();
-            preset.add(new Process("P0", 1, 2));
-            preset.add(new Process("P1", 2, 3));
-            preset.add(new Process("P2", 3, 4));
-            preset.add(new Process("P3", 4, 5));
+            preset.add(new Process("P0", 10 ,4));
+            preset.add(new Process("P1", 5 , 2));
+            preset.add(new Process("P2", 6 , 3));
+            preset.add(new Process("P3", 3 , 2));
+            preset.add(new Process("P4", 7 , 1));
+            preset.add(new Process("P5", 4 , 1));
+            preset.add(new Process("P6", 3 , 4));
+            preset.add(new Process("P7", 5 , 6));
+            preset.add(new Process("P8", 2 , 2));
+
             dataSupply.setToPresetList(preset, 1);
 
             preset.removeAll(preset);
-            preset.add(new Process("P0", 10, 20));
-            preset.add(new Process("P1", 20, 30));
-            preset.add(new Process("P2", 30, 40));
-            preset.add(new Process("P3", 40, 50));
+            preset.add(new Process("P0", 1, 0));
+            preset.add(new Process("P1", 2, 2));
+            preset.add(new Process("P2", 3, 2));
+            preset.add(new Process("P3", 4, 3));
             dataSupply.setToPresetList(preset, 2);
 
             preset.removeAll(preset);
-            preset.add(new Process("P0", 15, 25));
-            preset.add(new Process("P1", 25, 35));
-            preset.add(new Process("P2", 35, 45));
-            preset.add(new Process("P3", 45, 55));
+            preset.add(new Process("P0", 6, 2));
+            preset.add(new Process("P1", 3, 1));
+            preset.add(new Process("P2", 2, 5));
+            preset.add(new Process("P3", 9, 3));
+            preset.add(new Process("P3", 4, 3));
+            preset.add(new Process("P3", 2, 2));
+            preset.add(new Process("P3", 7, 11));
             dataSupply.setToPresetList(preset, 3);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -112,7 +121,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.action_about) {
-            Toast.makeText(this, "Dev. by Nikhil Pragna", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
             return true;
         }
 

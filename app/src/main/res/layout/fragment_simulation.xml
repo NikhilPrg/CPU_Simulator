@@ -13,7 +13,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Analize"
+        android:text="Analyze"
         android:layout_alignParentRight="true"
         android:visibility="gone"
         android:id="@+id/fcfs_btn_analize"/>
@@ -34,12 +34,12 @@
             android:gravity="center_horizontal" />
 
         <LinearLayout
-            android:layout_width="300px"
-            android:layout_height="300px"
+            android:layout_width="320px"
+            android:layout_height="320px"
             android:id="@+id/fcfs_running"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal"
-            android:padding="3dp"
+            android:padding="5dp"
             android:background="@drawable/completed">
 
         </LinearLayout>
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".4"
                 android:hint="Burst Time"
-                android:gravity="center"
+                android:gravity="center|bottom"
                 android:inputType="number"
                 android:id="@+id/fcfs_burstTime_textView"/>
             <EditText
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".4"
                 android:hint="Arrival Time"
-                android:gravity="center"
+                android:gravity="center|bottom"
                 android:inputType="number"
 
                 android:id="@+id/fcfs_arrivalTime_textView"/>
@@ -84,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".2"
                 android:gravity="center"
+                android:textAlignment="center"
                 android:text="add"
                 android:id="@+id/fcfs_add"/>
         </LinearLayout>
@@ -91,9 +92,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:textAlignment="center"
-            android:text="Start"/>
+            android:text="Start"
+            android:layout_marginTop="10dp" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -9,30 +9,36 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!-- <activity android:name=".SimulationFragment"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
 
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+
+            <!--android:theme="@style/AppTheme.NoActionBar"-->
+        </activity>
+        <activity android:name=".fcfs_analize" />
+        <activity
+            android:name=".EditPreset"
+            android:label="@string/title_activity_edit_preset"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AboutActivity" />
+        <activity
+            android:name=".SplashActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.FullScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".fcfs_analize" />
-        <activity
-            android:name=".EditPreset"
-            android:label="@string/title_activity_edit_preset"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

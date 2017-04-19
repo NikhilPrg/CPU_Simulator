@@ -10,4 +10,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/edit_list"
         android:layout_gravity="top|center" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_add_black_48dp"
+        android:id="@+id/edit_list_add"/>
 </FrameLayout>

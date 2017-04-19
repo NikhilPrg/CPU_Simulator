@@ -31,6 +31,7 @@ public class fcfs_analize extends AppCompatActivity {
             case 1: fcfs(AT, BT);break;
             case 2: sjf(AT, BT);break;
             case 3: sjf(AT, BT);break;
+            case 4: fcfs(AT, BT);break;
         }
         analizeGenerate();
         TextView awt = (TextView) findViewById(R.id.fcfs_analize_awt);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,8 +8,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.kurama.nikhil.cpusimulator.EditPreset"
+    tools:context=".EditPreset2"
     tools:showIn="@layout/activity_edit_preset">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -40,30 +41,35 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="30dp"/>
     </RelativeLayout>
-    <ListView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0sp"
+        android:layout_weight="1"
         android:id="@+id/preset_edit_list"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:layout_below="@id/edit_preset_titleLayout"/>
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/preset_edit_list">
+        android:layout_gravity="center"
+        android:orientation="horizontal">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select"
             android:id="@+id/edit_preset_btn_select"
-            android:layout_marginRight="20dp"/>
+            />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save"
-            android:id="@+id/edit_preset_btn_save"
-            android:layout_toLeftOf="@id/edit_preset_btn_select"
-            android:layout_toEndOf="@id/edit_preset_btn_select"/>
-    </RelativeLayout>
-</RelativeLayout>
+            android:id="@+id/edit_preset_btn_save" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:id="@+id/edit_preset_btn_add" />
+
+    </LinearLayout>
+</LinearLayout>

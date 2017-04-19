@@ -42,6 +42,15 @@ public class process_view_layout extends RelativeLayout{
         initializeViews(context);
     }
 
+    public process_view_layout(Context context, Process p) {
+        super(context);
+        initializeViews(context);
+        process_name = p.getProcessName();
+        burstTime = p.getBurstTime();
+        arrivalTime = p.getArrivalTime();
+        setProcessNameAndTime();
+    }
+
     public process_view_layout(Context context, String p, int bt, int at) {
         super(context);
         initializeViews(context);
