@@ -17,6 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -44,8 +46,29 @@ public class MainActivity extends AppCompatActivity
             editor2.commit();
         }
 
+        final ProcessRecordDataSupply dataSupply = new ProcessRecordDataSupply(this);
+        if(dataSupply.getListOfIds() == null) {
+            ArrayList<Process> preset = new ArrayList<Process>();
+            preset.add(new Process("P0", 1, 2));
+            preset.add(new Process("P1", 2, 3));
+            preset.add(new Process("P2", 3, 4));
+            preset.add(new Process("P3", 4, 5));
+            dataSupply.setToPresetList(preset, 1);
 
+            preset.removeAll(preset);
+            preset.add(new Process("P0", 10, 20));
+            preset.add(new Process("P1", 20, 30));
+            preset.add(new Process("P2", 30, 40));
+            preset.add(new Process("P3", 40, 50));
+            dataSupply.setToPresetList(preset, 2);
 
+            preset.removeAll(preset);
+            preset.add(new Process("P0", 15, 25));
+            preset.add(new Process("P1", 25, 35));
+            preset.add(new Process("P2", 35, 45));
+            preset.add(new Process("P3", 45, 55));
+            dataSupply.setToPresetList(preset, 3);
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

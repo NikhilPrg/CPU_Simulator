@@ -32,13 +32,6 @@ public class PresetsEditFragment extends Fragment {
         View fl = inflater.inflate(R.layout.fragment_preset_edit, container, false);
         final ProcessRecordDataSupply dataSupply = new ProcessRecordDataSupply(getContext());
 
-        ArrayList<Process> preset = new ArrayList<Process>();
-        preset.add(new Process("P0", 1, 2));
-        preset.add(new Process("P1", 2, 3));
-        preset.add(new Process("P2", 3, 4));
-        preset.add(new Process("P3", 4, 5));
-        dataSupply.setToPresetList(preset ,15);
-
         String[] ids = dataSupply.getListOfIds();
         Arrays.sort(ids);
 
