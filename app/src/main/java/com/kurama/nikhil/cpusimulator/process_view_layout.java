@@ -1,6 +1,7 @@
 package com.kurama.nikhil.cpusimulator;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
@@ -17,7 +18,7 @@ public class process_view_layout extends RelativeLayout{
     int burstTime = 0;
     int arrivalTime = 0;
     int processState = 0;
-
+    int previousState = 0;
 
 
     /*
@@ -143,6 +144,12 @@ public class process_view_layout extends RelativeLayout{
             setBackground();
             tim.setText("");
         }
+
+        if(processState == 1 && previousState == burstTime){
+            setProcessState(3);
+            setBackground();
+        }
+        previousState = burstTime;
     }
 
     public void setBackground() {

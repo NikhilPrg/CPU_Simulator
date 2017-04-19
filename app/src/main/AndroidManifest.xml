@@ -29,6 +29,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".fcfs_analize" />
+        <activity
+            android:name=".EditPreset"
+            android:label="@string/title_activity_edit_preset"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

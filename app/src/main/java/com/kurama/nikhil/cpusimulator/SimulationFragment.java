@@ -2,6 +2,7 @@ package com.kurama.nikhil.cpusimulator;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -28,7 +29,7 @@ public class SimulationFragment extends Fragment {
 
 
     int schedulingAlgorithm = 1;
-
+    SharedPreferences setting;
     /*
      KEY:
         FCFS = 1
@@ -72,9 +73,6 @@ public class SimulationFragment extends Fragment {
             seconds++;
             timerTextView = (TextView) getView().findViewById(R.id.timer_tv);
             timerTextView.setText(String.format("%04d", seconds));
-            if(runningID != -1) {
-                processList.get(runningID).subBurstTime();
-            }
             if(isProcessPending()) {
                 //DecideSchedulingAlgo
                 switch (schedulingAlgorithm) {
@@ -85,11 +83,14 @@ public class SimulationFragment extends Fragment {
                     default: FCFS();break;
                 }
 
+                if(runningID != -1) {
+                    processList.get(runningID).subBurstTime();
+                }
                 reduceArrivalTime();
                 try {
                     tempView.setProcessNameAndTime(processList.get(runningID).getProcess_name(), processList.get(runningID).getBurstTime());
                 }catch (Exception e){
-
+                    Log.e("SetCPU", "Error");
                 }
                 timerHandler.postDelayed(this, speed);
             }else {
@@ -111,7 +112,8 @@ public class SimulationFragment extends Fragment {
         fa = super.getActivity();
         ll = (RelativeLayout) inflater.inflate(R.layout.fragment_simulation, container, false);
 
-
+        setting = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
+        speed = setting.getInt("speed", 100);
         Button startButton = (Button) ll.findViewById(R.id.button);
         runningLayout = (LinearLayout) ll.findViewById(R.id.fcfs_running);
         tempView = new process_view_layout(super.getContext(),"CPU" ,0, 0, 1);
@@ -425,4 +427,9 @@ public class SimulationFragment extends Fragment {
         this.schedulingAlgorithm = schedulingAlgorithm;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        timerHandler.removeCallbacks(timerRunnable);
+    }
 }

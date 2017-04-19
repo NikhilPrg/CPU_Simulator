@@ -1,6 +1,9 @@
 package com.kurama.nikhil.cpusimulator;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,6 +21,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Toolbar toolbar;
+    SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,21 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("FCFS");
         setSupportActionBar(toolbar);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!prefs.getBoolean("firstTime", false)) {
+            settings = getSharedPreferences("settings", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putInt("selectedPreset", 1);
+            editor.putInt("speed", 500);
+            editor.commit();
+
+            SharedPreferences.Editor editor2 = prefs.edit();
+            editor2.putBoolean("firstTime", true);
+            editor2.commit();
+        }
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -45,6 +64,8 @@ public class MainActivity extends AppCompatActivity
 
         drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
         drawer.openDrawer(GravityCompat.START);
+
+
     }
 
     @Override
@@ -86,7 +107,9 @@ public class MainActivity extends AppCompatActivity
         ll.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         SimulationFragment temp = new SimulationFragment();
         ll.removeAllViews();
+
         if (id == R.id.nav_fcfs) {
+            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().getFragments().get(0)).commit();
             toolbar.setTitle("FCFS");
             temp.setSchedulingAlgorithm(1);
             getSupportFragmentManager()
@@ -95,6 +118,7 @@ public class MainActivity extends AppCompatActivity
                     .disallowAddToBackStack()
                     .commit();
         } else if (id == R.id.nav_sjf) {
+            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().getFragments().get(0)).commit();
             toolbar.setTitle("SJF");
             temp.setSchedulingAlgorithm(2);
             getSupportFragmentManager()
@@ -103,6 +127,7 @@ public class MainActivity extends AppCompatActivity
                     .disallowAddToBackStack()
                     .commit();
         } else if (id == R.id.nav_srtf) {
+            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().getFragments().get(0)).commit();
             toolbar.setTitle("SRTF");
             temp.setSchedulingAlgorithm(3);
             getSupportFragmentManager()
@@ -111,6 +136,7 @@ public class MainActivity extends AppCompatActivity
                     .disallowAddToBackStack()
                     .commit();
         } else if (id == R.id.nav_rr) {
+            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().getFragments().get(0)).commit();
             toolbar.setTitle("Round Robin");
             temp.setSchedulingAlgorithm(4);
             getSupportFragmentManager()
@@ -119,13 +145,19 @@ public class MainActivity extends AppCompatActivity
                     .disallowAddToBackStack()
                     .commit();
         } else if (id == R.id.nav_edit) {
+            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().getFragments().get(0)).commit();
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(ll.getId(), new EditFragment(), "Edit")
+                    .add(ll.getId(), new PresetsEditFragment(), "Edit")
                     .disallowAddToBackStack()
                     .commit();
         } else if (id == R.id.nav_speed) {
-
+            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().getFragments().get(0)).commit();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(ll.getId(), new SpeedFragment(), "Speed")
+                    .disallowAddToBackStack()
+                    .commit();
         }
 
 
